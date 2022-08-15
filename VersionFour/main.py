@@ -50,7 +50,7 @@ def get_args(**kwargs):
 if __name__ == '__main__':
     # ==============  Create environment & buffer  =============
     args = get_args()
-    exp_dir = exp_dir(desc=f'{args.task + "/" + args.task + "_" + str(args.s) + "_" + str(args.t) + "_" + str(args.w)}')
+    exp_dir = exp_dir(desc=f'{args.task + "/" + str(args.s) + "_" + str(args.t) + "_" + str(args.w)}')
     rl_logger = SummaryWriter(exp_dir)
     rl_logger.add_text(tag='parameters', text_string=str(args))
     rl_logger.add_text(tag='characteristic',
@@ -61,8 +61,10 @@ if __name__ == '__main__':
     torch.manual_seed(args.seed)
     random.seed(args.seed)
 
-    write_txt = open(args.save_path + "/" + str(args.s) + "_" + str(args.t) + "_" + str(args.w) + ".txt", 'w+')
+    write_txt = open(
+        args.save_path + "/" + args.task + "_" + str(args.s) + "_" + str(args.t) + "_" + str(args.w) + ".txt", 'w+')
     print("worked", file=write_txt)
+
     # ========================= Policy ======================
     BAY_S = args.s
     BAY_T = args.t

@@ -15,6 +15,7 @@ from VersionOne.maze_env import Maze
 from VersionOne.queue import generate_element, permuteUnique, writeIntoTxt
 from VersionOne.RL_brain import QLearningTable
 
+
 def update():
     for episode in range(80):
         # initial observation
@@ -50,7 +51,9 @@ if __name__ == "__main__":
     s, t, w = 3, 3, 3
     elements = generate_element(s, t, w)  # 生成集装箱分布
     res = permuteUnique(elements)  # 生成分布下的全排列队列
-    writeIntoTxt("/Users/jacqueline/Desktop/Tsing/Research/毕设/data & result/生成队列/S" + str(s) + "_t" + str(t) + "_w" + str(w) + ".txt", res)  # 写入txt文档
+    writeIntoTxt(
+        "/Users/jacqueline/Desktop/Tsing/Research/毕设/data & result/生成队列/S" + str(s) + "_t" + str(t) + "_w" + str(
+            w) + ".txt", res)  # 写入txt文档
     env = Maze(s, t, w, res[60])
     RL = QLearningTable(env.n_actions)
     env.after(100, update)
